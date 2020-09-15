@@ -60,6 +60,7 @@ public class HomeController {
 
         model.addAttribute("note",new Note());
         model.addAttribute("credential",new Credential());
+        model.addAttribute("credentialService", credientialService);
 
         model.addAttribute("files",files);
         model.addAttribute("notes",notes);
