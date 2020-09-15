@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.mappers.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -13,6 +14,7 @@ public class UserService {
     private UserMapper usersMapper;
     private HashService hashService;
 
+    @Autowired
     public UserService(UserMapper usersMapper, HashService hashService) {
         this.usersMapper = usersMapper;
         this.hashService = hashService;

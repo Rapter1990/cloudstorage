@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.mappers.CredentialMapper;
 import com.udacity.jwdnd.course1.cloudstorage.models.Credential;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -14,6 +15,7 @@ public class CredientialService {
     private CredentialMapper credentialMapper;
     private EncryptionService encryptionService;
 
+    @Autowired
     public CredientialService(CredentialMapper credentialMapper, EncryptionService encryptionService) {
         this.credentialMapper = credentialMapper;
         this.encryptionService = encryptionService;
@@ -50,8 +52,8 @@ public class CredientialService {
         return credentialMapper.findCredential(credentialId);
     }
 
-    public int deleteCredential(int credentialid) {
-        return credentialMapper.deleteCredential(credentialid);
+    public int deleteCredential(int credentialId) {
+        return credentialMapper.deleteCredential(credentialId);
     }
 
     public String decryptPassword(Credential credential) {

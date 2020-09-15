@@ -10,6 +10,8 @@ public class Credential implements Serializable {
     private String password;
     private Integer userId;
 
+    public Credential() { }
+
     public Credential(Integer credentialId, String url, String userName, String key, String password, Integer userId) {
         this.credentialId = credentialId;
         this.url = url;

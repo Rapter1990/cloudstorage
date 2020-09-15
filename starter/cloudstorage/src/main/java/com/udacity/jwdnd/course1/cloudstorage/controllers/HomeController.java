@@ -58,6 +58,9 @@ public class HomeController {
             credentials = new ArrayList<>();
         }
 
+        model.addAttribute("note",new Note());
+        model.addAttribute("credential",new Credential());
+
         model.addAttribute("files",files);
         model.addAttribute("notes",notes);
         model.addAttribute("credentials",credentials);
