@@ -134,11 +134,11 @@
                                         <th style="width: 25%" scope="col">Password</th>
                                     </tr>
                                 </thead>
-                                <tbody th:each="decryptedPwd : ${decryptedPasswords}" >
+                                <tbody >
                                 <tr th:each="cred:${credentials}">
                                     <td>
                                         <button id="edit-credential" type="button" class="btn btn-success"
-                                                th:attr="data-id=${cred.credentialId},data-url=${cred.url},data-username=${cred.userName},data-password=${decryptedPwd}"
+                                                th:attr="data-id=${cred.credentialId},data-url=${cred.url},data-username=${cred.userName},data-password=${encryptionService.decryptValue(cred.password,cred.key)}"
                                                 onclick="showCredentialModal(this.getAttribute('data-id'),this.getAttribute('data-url'),this.getAttribute('data-username'),this.getAttribute('data-password'))">Edit/View</button>
                                         <a class="btn btn-danger" id="delete-credential"
                                            th:href="@{/credential/delete/{credentialId}(credentialId = ${cred.credentialId})}">Delete</a>
