@@ -3,7 +3,7 @@ package com.udacity.jwdnd.course1.cloudstorage.controllers;
 import com.udacity.jwdnd.course1.cloudstorage.models.Credential;
 import com.udacity.jwdnd.course1.cloudstorage.models.File;
 import com.udacity.jwdnd.course1.cloudstorage.models.Note;
-import com.udacity.jwdnd.course1.cloudstorage.services.CredientialService;
+import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.NoteService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
@@ -23,14 +23,14 @@ public class HomeController {
     private UserService userService;
     private FileService fileService;
     private NoteService noteService;
-    private CredientialService credientialService;
+    private CredentialService credentialService;
 
     @Autowired
-    public HomeController(UserService userService, FileService fileService, NoteService noteService, CredientialService credientialService) {
+    public HomeController(UserService userService, FileService fileService, NoteService noteService, CredentialService credentialService) {
         this.userService = userService;
         this.fileService = fileService;
         this.noteService = noteService;
-        this.credientialService = credientialService;
+        this.credentialService = credentialService;
     }
 
     @GetMapping(value = {"/", "/home"})
@@ -53,14 +53,14 @@ public class HomeController {
 
         List<Credential> credentials;
         try {
-            credentials = credientialService.getCredentialsByUserId(uid);
+            credentials = credentialService.getCredentialsByUserId(uid);
         } catch (NullPointerException e){
             credentials = new ArrayList<>();
         }
 
         model.addAttribute("note",new Note());
         model.addAttribute("credential",new Credential());
-        model.addAttribute("credentialService", credientialService);
+        model.addAttribute("credentialService", credentialService);
 
         model.addAttribute("files",files);
         model.addAttribute("notes",notes);

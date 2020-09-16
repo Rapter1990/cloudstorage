@@ -2,7 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.controllers;
 
 import com.udacity.jwdnd.course1.cloudstorage.mappers.CredentialMapper;
 import com.udacity.jwdnd.course1.cloudstorage.models.Credential;
-import com.udacity.jwdnd.course1.cloudstorage.services.CredientialService;
+import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class CredentialController {
 
     private CredentialMapper credentialMapper;
-    private CredientialService credientialService;
+    private CredentialService credentialService;
     private UserService userService;
 
     @Autowired
-    public CredentialController(CredentialMapper credentialMapper, CredientialService credientialService, UserService userService) {
+    public CredentialController(CredentialMapper credentialMapper, CredentialService credentialService, UserService userService) {
         this.credentialMapper = credentialMapper;
-        this.credientialService = credientialService;
+        this.credentialService = credentialService;
         this.userService = userService;
     }
 
@@ -30,7 +30,7 @@ public class CredentialController {
     public String AddEditCredential(@ModelAttribute Credential credential, Authentication auth, Model model) {
         if(credential.getCredentialId() == null) {
             credential.setUserId(userService.getUserById(auth.getName()));
-            int addrow = credientialService.insertCredential(credential);
+            int addrow = credentialService.insertCredential(credential);
             if (addrow == 1) {
                 model.addAttribute("successResult", true);
                 return "result";
@@ -41,7 +41,7 @@ public class CredentialController {
             }
         }
         else {
-            int updaterow = credientialService.updateCredential(credential);
+            int updaterow = credentialService.updateCredential(credential);
             if (updaterow == 1) {
                 model.addAttribute("successResult", true);
                 return "result";
@@ -55,7 +55,7 @@ public class CredentialController {
 
     @GetMapping("/delete/{credentialId:.+}")
     public String deleteCredential(@PathVariable Integer credentialId, Model model) {
-        int delrow = credientialService.deleteCredential(credentialId);
+        int delrow = credentialService.deleteCredential(credentialId);
         if(delrow == 1) {
             model.addAttribute("successResult", true);
             return "result";

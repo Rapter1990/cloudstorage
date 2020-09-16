@@ -10,13 +10,13 @@ import java.util.Base64;
 import java.util.List;
 
 @Service
-public class CredientialService {
+public class CredentialService {
 
     private CredentialMapper credentialMapper;
     private EncryptionService encryptionService;
 
     @Autowired
-    public CredientialService(CredentialMapper credentialMapper, EncryptionService encryptionService) {
+    public CredentialService(CredentialMapper credentialMapper, EncryptionService encryptionService) {
         this.credentialMapper = credentialMapper;
         this.encryptionService = encryptionService;
     }
