@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class HomeController {
     private NoteService noteService;
     private CredentialService credentialService;
 
+    private List<File> files;
+    private List<Note> notes;
+    private List<Credential> credentials;
+
     @Autowired
     public HomeController(UserService userService, FileService fileService, NoteService noteService, CredentialService credentialService) {
         this.userService = userService;
@@ -33,31 +38,21 @@ public class HomeController {
         this.credentialService = credentialService;
     }
 
+    @PostConstruct
+    public void postConstruct(){
+        files = new ArrayList<>();
+        notes = new ArrayList<>();
+        credentials = new ArrayList<>();
+    }
+
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Authentication auth, Model model) {
         Integer uid = userService.getUserById(auth.getName());
 
-        List<File> files;
-        try {
-            files = fileService.getFilesByUserId(uid);
-        } catch (NullPointerException e){
-            files = new ArrayList<>();
-        }
-
-        List<Note> notes;
-        try {
-            notes = noteService.getNotesByUserId(uid);
-        } catch (NullPointerException e){
-            notes = new ArrayList<>();
-        }
-
-        List<Credential> credentials;
-        try {
-            credentials = credentialService.getCredentialsByUserId(uid);
-        } catch (NullPointerException e){
-            credentials = new ArrayList<>();
-        }
-
+        files = fileService.getFilesByUserId(uid);
+        notes = noteService.getNotesByUserId(uid);
+        credentials = credentialService.getCredentialsByUserId(uid);
+        
         model.addAttribute("note",new Note());
         model.addAttribute("credential",new Credential());
         model.addAttribute("credentialService", credentialService);
