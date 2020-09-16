@@ -1,8 +1,8 @@
-package com.udacity.jwdnd.course1.cloudstorage;
+package com.udacity.jwdnd.course1.cloudstorage.tests;
 
-import com.udacity.jwdnd.course1.cloudstorage.page.CredentialPage;
-import com.udacity.jwdnd.course1.cloudstorage.page.LoginPage;
-import com.udacity.jwdnd.course1.cloudstorage.page.SignUpPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.CredentialPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
