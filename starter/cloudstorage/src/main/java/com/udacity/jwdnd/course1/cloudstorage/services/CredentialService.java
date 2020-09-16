@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -58,6 +59,19 @@ public class CredentialService {
 
     public String decryptPassword(Credential credential) {
         return encryptionService.decryptValue(credential.getPassword(), credential.getKey());
+    }
+
+    public List<String> getAllDecryptedPasswords(Integer userId) {
+        List<Credential> credentialList = getCredentialsByUserId(userId);
+        List<String> unencryptedPasswords = new ArrayList<>();
+        if (credentialList != null && !credentialList.isEmpty()) {
+            for (Credential credential : credentialList) {
+                String encodedKey = credential.getKey();
+                unencryptedPasswords.add(encryptionService.decryptValue(credential.getPassword(), encodedKey));
+            }
+            return unencryptedPasswords;
+        }
+        return new ArrayList<>();
     }
 
 }

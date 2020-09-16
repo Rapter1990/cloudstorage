@@ -29,6 +29,7 @@ public class HomeController {
     private List<File> files;
     private List<Note> notes;
     private List<Credential> credentials;
+    List<String> unencryptedPasswords;
 
     @Autowired
     public HomeController(UserService userService, FileService fileService, NoteService noteService, CredentialService credentialService) {
@@ -43,6 +44,7 @@ public class HomeController {
         files = new ArrayList<>();
         notes = new ArrayList<>();
         credentials = new ArrayList<>();
+        unencryptedPasswords = new ArrayList<>();
     }
 
     @GetMapping(value = {"/", "/home"})
@@ -52,6 +54,7 @@ public class HomeController {
         files = fileService.getFilesByUserId(uid);
         notes = noteService.getNotesByUserId(uid);
         credentials = credentialService.getCredentialsByUserId(uid);
+        unencryptedPasswords = credentialService.getAllDecryptedPasswords(uid);
         
         model.addAttribute("note",new Note());
         model.addAttribute("credential",new Credential());
@@ -60,6 +63,8 @@ public class HomeController {
         model.addAttribute("files",files);
         model.addAttribute("notes",notes);
         model.addAttribute("credentials",credentials);
+        model.addAttribute("decryptedPasswords", unencryptedPasswords);
+
         return "home";
     }
 
