@@ -60,8 +60,6 @@ public class CredentialTest {
 
         credentialPage.addCredential(driver, url, username, password);
 
-        WebDriverWait wait = new WebDriverWait(driver, 1000);
-
         assertEquals(url, credentialPage.getCredentialUrl());
         assertEquals(username, credentialPage.getCredentialUsername());
         Assertions.assertNotEquals(password, credentialPage.getCredentialPassword());
@@ -96,8 +94,8 @@ public class CredentialTest {
     @Test
     @Order(4)
     public void deleteCredential(){
-
         credentialPage.deleteCredential(driver);
+
         Assertions.assertNull(credentialPage.getCredentialUrl());
         Assertions.assertNull(credentialPage.getCredentialUsername());
         Assertions.assertNull(credentialPage.getCredentialPassword());

@@ -123,6 +123,8 @@ public class NotePage {
         noteDescriptionInput.sendKeys(title);
     }
 
+    public String getNoteTitle() { return noteTitleDisplay.getText(); }
 
+    public String getNoteDescription() { return noteDescriptionDisplay.getText(); }
 
 }
