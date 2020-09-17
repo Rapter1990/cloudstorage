@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.tests;
 
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.NotePage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.ResultPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
@@ -25,6 +26,8 @@ public class NoteTest {
 
     public NotePage notePage;
 
+    public ResultPage resultPage;
+
     @BeforeAll
     static void beforeAll() {
         Locale.setDefault(new Locale("en","US"));
@@ -35,6 +38,7 @@ public class NoteTest {
     public void beforeEach() {
         this.driver = new ChromeDriver();
         notePage = new NotePage(driver);
+        resultPage = new ResultPage(driver);
 
         driver.get("http://localhost:" + this.port + "/signup");
         SignUpPage signupPage = new SignUpPage(driver);
@@ -60,10 +64,16 @@ public class NoteTest {
     @Order(1)
     public void addNote(){
 
+        driver.get("http://localhost:" + this.port + "/home");
+
         String noteTitle = "Note Title";
         String noteDescription = "Note Description";
 
         notePage.addNote(driver, noteTitle,noteDescription);
+
+        resultPage.clickReturnHomeButton(driver);
+
+        notePage.clickNotesTab(driver);
 
         assertEquals(noteTitle, notePage.getNoteTitle());
         assertEquals(noteDescription, notePage.getNoteDescription());
@@ -73,6 +83,8 @@ public class NoteTest {
     @Test
     @Order(2)
     public void editNote(){
+
+        driver.get("http://localhost:" + this.port + "/home");
 
         String noteTitle = "Note Title Update";
         String noteDescription = "Note Description Update";
@@ -86,6 +98,9 @@ public class NoteTest {
     @Test
     @Order(3)
     public void deleteNote(){
+
+        driver.get("http://localhost:" + this.port + "/home");
+
         notePage.deleteNote(driver);
 
         Assertions.assertNull(notePage.getNoteTitle());
