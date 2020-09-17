@@ -63,7 +63,7 @@ public class FileTest {
 
         driver.get(baseUrl + "/home");
 
-        String filePath = "file:///C:/Users/Noyan/Desktop/a.png";
+        String filePath = "C:/Users/Noyan/Desktop/a.png";
 
         filePage.uploadFile(driver,filePath);
 
