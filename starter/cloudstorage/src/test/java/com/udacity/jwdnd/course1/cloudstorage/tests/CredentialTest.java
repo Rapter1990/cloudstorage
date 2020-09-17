@@ -41,10 +41,16 @@ public class CredentialTest {
         this.driver = new ChromeDriver();
         credentialPage = new CredentialPage(driver);
 
-        driver.get("http://localhost:" + this.port + "/login");
-        LoginPage loginPage = new LoginPage(driver);
+        driver.get("http://localhost:" + this.port + "/signup");
+        SignUpPage signupPage = new SignUpPage(driver);
+        String firstname = "Sonny";
+        String lastname = "Johnson";
         String username = "sonny_johnson";
         String password = "P4ssword";
+        signupPage.signupUser(firstname,lastname,username,password);
+
+        driver.get("http://localhost:" + this.port + "/login");
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.loginUser(username, password);
     }
 
