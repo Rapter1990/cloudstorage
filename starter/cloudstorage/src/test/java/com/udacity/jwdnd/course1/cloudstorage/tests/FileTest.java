@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.tests;
 
 import com.udacity.jwdnd.course1.cloudstorage.pages.FilePage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -36,10 +37,16 @@ public class FileTest {
         baseUrl = "http://localhost:" + this.port;
         filePage = new FilePage(driver);
 
-        driver.get("http://localhost:" + this.port + "/login");
-        LoginPage loginPage = new LoginPage(driver);
+        driver.get("http://localhost:" + this.port + "/signup");
+        SignUpPage signupPage = new SignUpPage(driver);
+        String firstname = "Sonny";
+        String lastname = "Johnson";
         String username = "sonny_johnson";
         String password = "P4ssword";
+        signupPage.signupUser(firstname,lastname,username,password);
+
+        driver.get("http://localhost:" + this.port + "/login");
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.loginUser(username, password);
     }
 
@@ -54,7 +61,7 @@ public class FileTest {
     @Order(1)
     public void uploadFile(){
 
-        String filePath = "Users/Noyan/Desktop/a.png";
+        String filePath = "C:Users/Noyan/Desktop/a.png";
 
         filePage.uploadFile(driver,filePath);
 
