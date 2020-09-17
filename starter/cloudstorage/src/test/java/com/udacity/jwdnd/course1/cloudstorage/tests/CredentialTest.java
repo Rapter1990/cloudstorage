@@ -96,6 +96,7 @@ public class CredentialTest {
     @Test
     @Order(4)
     public void deleteCredential(){
+
         credentialPage.deleteCredential(driver);
         Assertions.assertNull(credentialPage.getCredentialUrl());
         Assertions.assertNull(credentialPage.getCredentialUsername());

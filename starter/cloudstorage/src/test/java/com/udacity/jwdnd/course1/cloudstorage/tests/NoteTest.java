@@ -35,4 +35,22 @@ public class NoteTest {
             driver.quit();
         }
     }
+
+    @Test
+    @Order(1)
+    public void addNote(){
+
+    }
+
+    @Test
+    @Order(2)
+    public void editNote(){
+
+    }
+
+    @Test
+    @Order(3)
+    public void deleteNote(){
+
+    }
 }
