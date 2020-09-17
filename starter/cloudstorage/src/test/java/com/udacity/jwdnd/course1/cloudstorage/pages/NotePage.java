@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.pages;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,51 +72,93 @@ public class NotePage {
 
     public void clickNotesTab(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(notesTab)).click();
+        try{
+            wait.until(ExpectedConditions.visibilityOf(notesTab)).click();
+        }catch (TimeoutException ex){
+            System.out.println("clickNotesTab Error : " + ex);
+        }
+
     }
 
     public void clickAddNewNote(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(addNoteButton)).click();
+        try{
+            wait.until(ExpectedConditions.visibilityOf(addNoteButton)).click();
+        }catch (TimeoutException ex){
+            System.out.println("clickAddNewNote Error : " + ex);
+        }
     }
 
     public void clickEditNote(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(editNoteButton)).click();
+        try{
+            wait.until(ExpectedConditions.visibilityOf(editNoteButton)).click();
+        }catch (TimeoutException ex){
+            System.out.println("clickEditNote Error : " + ex);
+        }
+
     }
 
     public void clickDeleteNote(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(deleteNoteButton)).click();
+        try{
+            wait.until(ExpectedConditions.visibilityOf(deleteNoteButton)).click();
+        }catch (TimeoutException ex){
+            System.out.println("clickDeleteNote Error : " + ex);
+        }
     }
 
     public void clickSubmitNote(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(noteSubmitButton)).click();
+        try{
+            wait.until(ExpectedConditions.visibilityOf(noteSubmitButton)).click();
+        }catch (TimeoutException ex){
+            System.out.println("clickSubmitNote Error : " + ex);
+        }
     }
 
     public void writeAddInputTitle(WebDriver driver,String title){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(noteTitleInput));
+        try{
+            wait.until(ExpectedConditions.visibilityOf(noteTitleInput));
+        }catch (TimeoutException ex){
+            System.out.println("writeAddInputTitle Error : " + ex);
+        }
+
         noteTitleInput.sendKeys(title);
     }
 
     public void writeAddDescriptionTitle(WebDriver driver,String title){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(noteDescriptionInput));
+        try{
+            wait.until(ExpectedConditions.visibilityOf(noteDescriptionInput));
+        }catch (TimeoutException ex){
+            System.out.println("writeAddDescriptionTitle Error : " + ex);
+        }
+
         noteDescriptionInput.sendKeys(title);
     }
 
     public void writeEditInputTitle(WebDriver driver,String title){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(noteTitleInput));
+        try{
+            wait.until(ExpectedConditions.visibilityOf(noteTitleInput));
+        }catch (TimeoutException ex){
+            System.out.println("writeEditInputTitle Error : " + ex);
+        }
+
         noteTitleInput.clear();
         noteTitleInput.sendKeys(title);
     }
 
     public void writeEditDescriptionTitle(WebDriver driver,String title){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(noteDescriptionInput));
+        try{
+            wait.until(ExpectedConditions.visibilityOf(noteDescriptionInput));
+        }catch (TimeoutException ex){
+            System.out.println("writeEditDescriptionTitle Error : " + ex);
+        }
+
         noteDescriptionInput.clear();
         noteDescriptionInput.sendKeys(title);
     }
