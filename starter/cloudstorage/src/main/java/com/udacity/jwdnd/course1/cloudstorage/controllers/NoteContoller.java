@@ -25,7 +25,7 @@ public class NoteContoller {
 
     @PostMapping("/add")
     public String AddAndEditNote(@ModelAttribute Note note, Authentication auth, Model model) {
-        if(note.getNoteId() == null) {
+        if(note.getNoteId() == null || note.getNoteId() < 0) {
             int uid = userService.getUserById(auth.getName());
             int addrow = noteService.addNote(note,uid);
             if(addrow == 1 ) {
