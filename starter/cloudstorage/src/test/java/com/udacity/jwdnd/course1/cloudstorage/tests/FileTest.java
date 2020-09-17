@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.tests;
 
+import com.udacity.jwdnd.course1.cloudstorage.pages.FilePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,11 @@ public class FileTest {
 
     private WebDriver driver;
 
+    private String baseUrl;
+
+    public SignUpLoginLogoutTest signUpLoginLogoutTest;
+    public FilePage filePage;
+
     @BeforeAll
     static void beforeAll() {
         Locale.setDefault(new Locale("en","US"));
@@ -27,6 +33,8 @@ public class FileTest {
     @BeforeEach
     public void beforeEach() {
         this.driver = new ChromeDriver();
+        baseUrl = "http://localhost:" + this.port;
+        filePage = new FilePage(driver);
     }
 
     @AfterEach
@@ -34,5 +42,28 @@ public class FileTest {
         if (this.driver != null) {
             driver.quit();
         }
+    }
+
+    @Test
+    @Order(1)
+    public void uploadFile(){
+        signUpLoginLogoutTest.login();
+
+        String filePath = "Users/Noyan/Desktop/a.png";
+
+        filePage.uploadFile(driver,filePath);
+
+        Assertions.assertTrue(driver.getPageSource().contains("a.png"));
+    }
+
+    @Test
+    @Order(2)
+    public void deleteFile(){
+
+        driver.get(baseUrl + "/home");
+
+        filePage.deleteFile(driver);
+
+        Assertions.assertFalse(driver.getPageSource().contains("a.png"));
     }
 }

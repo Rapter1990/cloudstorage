@@ -33,6 +33,7 @@ public class NoteTest {
     @BeforeEach
     public void beforeEach() {
         this.driver = new ChromeDriver();
+        notePage = new NotePage(driver);
     }
 
     @AfterEach

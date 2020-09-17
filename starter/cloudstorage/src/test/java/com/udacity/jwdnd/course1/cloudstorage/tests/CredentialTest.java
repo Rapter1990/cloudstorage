@@ -40,6 +40,7 @@ public class CredentialTest {
     @BeforeEach
     public void beforeEach() {
         this.driver = new ChromeDriver();
+        credentialPage = new CredentialPage(driver);
     }
 
     @AfterEach

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+
 public class FilePage {
 
     @FindBy(id = "upload-file-button")
@@ -32,5 +34,21 @@ public class FilePage {
     public void deleteFile(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(deleteFileButton)).click();
+    }
+
+    public File getLatestFileFromDir(String dirPath){
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles();
+        if (files == null || files.length == 0) {
+            return null;
+        }
+
+        File lastModifiedFile = files[0];
+        for (int i = 1; i < files.length; i++) {
+            if (lastModifiedFile.lastModified() < files[i].lastModified()) {
+                lastModifiedFile = files[i];
+            }
+        }
+        return lastModifiedFile;
     }
 }
