@@ -108,6 +108,9 @@ public class CredentialTest {
     @Test
     @Order(4)
     public void deleteCredential(){
+
+        driver.get("http://localhost:" + this.port + "/home");
+
         credentialPage.deleteCredential(driver);
 
         Assertions.assertNull(credentialPage.getCredentialUrl());
