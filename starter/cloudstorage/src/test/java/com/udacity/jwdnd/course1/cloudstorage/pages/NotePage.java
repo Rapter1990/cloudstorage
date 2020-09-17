@@ -41,7 +41,6 @@ public class NotePage {
     }
 
     public void addNote(WebDriver driver, String title, String description){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
 
         clickNotesTab(driver);
         clickAddNewNote(driver);
@@ -56,8 +55,6 @@ public class NotePage {
     }
 
     public void editNote(WebDriver driver, String title, String description){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
         clickNotesTab(driver);
         clickEditNote(driver);
 
