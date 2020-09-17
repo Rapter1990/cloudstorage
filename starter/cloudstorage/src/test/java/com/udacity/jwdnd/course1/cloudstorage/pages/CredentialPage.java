@@ -56,6 +56,9 @@ public class CredentialPage {
     @FindBy(id="logout-button")
     private WebElement logoutbutton;
 
+    @FindBy(id = "close-button")
+    private WebElement closeButton;
+
     public CredentialPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -145,8 +148,22 @@ public class CredentialPage {
         credentialpassworddisplay.sendKeys(url);
     }
 
+    public void closeButton(WebDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(closeButton)).click();
+    }
+
+
     public void userLogout(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(logoutbutton)).click();
     }
+
+    public String getCredentialUrl() { return credentialurldisplay.getText(); }
+
+    public String getCredentialUsername() { return credentialusernamedisplay.getText(); }
+
+    public String getCredentialPassword() { return credentialpassworddisplay.getText(); }
+
+    public String getEditPassword() { return credentialpasswordInput.getAttribute("value"); }
 }

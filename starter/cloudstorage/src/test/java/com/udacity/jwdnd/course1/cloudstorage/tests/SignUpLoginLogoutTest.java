@@ -12,6 +12,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Locale;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SignUpLoginLogoutTest {
@@ -21,6 +23,8 @@ public class SignUpLoginLogoutTest {
 
     private WebDriver driver;
 
+    public String baseURL;
+
     @BeforeAll
     static void beforeAll() {
         Locale.setDefault(new Locale("en","US"));
@@ -29,6 +33,7 @@ public class SignUpLoginLogoutTest {
 
     @BeforeEach
     public void beforeEach() {
+        baseURL = "http://localhost:" + port;
         this.driver = new ChromeDriver();
     }
 
@@ -59,15 +64,19 @@ public class SignUpLoginLogoutTest {
         String username = "sonny_johnson";
         String password = "P4ssword";
         loginPage.loginUser(username, password);
+
+        assertEquals(baseURL+"/home", driver.getCurrentUrl());
     }
 
     @Test
     @Order(3)
     public void logout() {
         driver.get("http://localhost:" + this.port + "/home");
-        Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
+        assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
         CredentialPage credentialPage = new CredentialPage(driver);
         credentialPage.userLogout(driver);
+
+        assertEquals(baseURL+"/login?logout", driver.getCurrentUrl());
     }
 
 }
