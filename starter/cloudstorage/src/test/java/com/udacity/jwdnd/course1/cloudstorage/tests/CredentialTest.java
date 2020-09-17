@@ -27,7 +27,6 @@ public class CredentialTest {
 
     private WebDriver driver;
 
-    public SignUpLoginLogoutTest signUpLoginLogoutTest;
     public CredentialPage credentialPage;
 
 
@@ -41,6 +40,12 @@ public class CredentialTest {
     public void beforeEach() {
         this.driver = new ChromeDriver();
         credentialPage = new CredentialPage(driver);
+
+        driver.get("http://localhost:" + this.port + "/login");
+        LoginPage loginPage = new LoginPage(driver);
+        String username = "sonny_johnson";
+        String password = "P4ssword";
+        loginPage.loginUser(username, password);
     }
 
     @AfterEach
@@ -53,7 +58,6 @@ public class CredentialTest {
     @Test
     @Order(1)
     public void addCredential(){
-        signUpLoginLogoutTest.login();
 
         String url = "https://www.yahoo.com";
         String username = "yahoo_username";

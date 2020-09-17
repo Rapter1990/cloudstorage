@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.tests;
 
+import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.NotePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
@@ -21,7 +22,6 @@ public class NoteTest {
 
     private WebDriver driver;
 
-    public SignUpLoginLogoutTest signUpLoginLogoutTest;
     public NotePage notePage;
 
     @BeforeAll
@@ -34,6 +34,12 @@ public class NoteTest {
     public void beforeEach() {
         this.driver = new ChromeDriver();
         notePage = new NotePage(driver);
+
+        driver.get("http://localhost:" + this.port + "/login");
+        LoginPage loginPage = new LoginPage(driver);
+        String username = "sonny_johnson";
+        String password = "P4ssword";
+        loginPage.loginUser(username, password);
     }
 
     @AfterEach
@@ -46,7 +52,6 @@ public class NoteTest {
     @Test
     @Order(1)
     public void addNote(){
-        signUpLoginLogoutTest.login();
 
         String noteTitle = "Note Title";
         String noteDescription = "Note Description";
