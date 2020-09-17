@@ -61,7 +61,9 @@ public class FileTest {
     @Order(1)
     public void uploadFile(){
 
-        String filePath = "C:Users/Noyan/Desktop/a.png";
+        driver.get(baseUrl + "/home");
+
+        String filePath = "file:///C:/Users/Noyan/Desktop/a.png";
 
         filePage.uploadFile(driver,filePath);
 
