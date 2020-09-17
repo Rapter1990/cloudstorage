@@ -73,8 +73,7 @@ public class CredentialTest {
     public void getActualPassword(){
         WebDriverWait wait = new WebDriverWait(driver, 1000);
         wait.until(driver -> driver.findElement(By.id("edit-credential"))).click();
-        WebElement inputPassword = wait.until(driver -> driver.findElement(By.id("credential-password")));
-        String password = inputPassword.getAttribute("value");
+        String password = credentialPage.getEditPassword();
         assertEquals("yahoo_password", password);
         credentialPage.closeButton(driver);
     }
