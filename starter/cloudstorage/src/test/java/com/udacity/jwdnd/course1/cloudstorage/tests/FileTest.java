@@ -67,7 +67,7 @@ public class FileTest {
 
         filePage.uploadFile(driver,filePath);
 
-        Assertions.assertTrue(driver.getPageSource().contains("a.png"));
+        Assertions.assertTrue(filePage.getFileName().contains("a.png"));
     }
 
     @Test
@@ -78,6 +78,6 @@ public class FileTest {
 
         filePage.deleteFile(driver);
 
-        Assertions.assertFalse(driver.getPageSource().contains("a.png"));
+        Assertions.assertFalse(filePage.getFileName().contains("a.png"));
     }
 }
