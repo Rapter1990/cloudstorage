@@ -71,10 +71,18 @@ public class SignUpLoginLogoutTest {
     @Test
     @Order(3)
     public void logout() {
+
+        driver.get("http://localhost:" + this.port + "/login");
+        LoginPage loginPage = new LoginPage(driver);
+        String username = "sonny_johnson";
+        String password = "P4ssword";
+        loginPage.loginUser(username, password);
+
         driver.get("http://localhost:" + this.port + "/home");
         assertEquals(baseURL+ "/home", driver.getCurrentUrl());
         CredentialPage credentialPage = new CredentialPage(driver);
         credentialPage.userLogout(driver);
+
 
         assertEquals(baseURL+"/login?logout", driver.getCurrentUrl());
     }
