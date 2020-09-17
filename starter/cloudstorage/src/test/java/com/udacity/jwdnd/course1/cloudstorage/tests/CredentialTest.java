@@ -59,6 +59,8 @@ public class CredentialTest {
     @Order(1)
     public void addCredential(){
 
+        driver.get("http://localhost:" + this.port + "/home");
+
         String url = "https://www.yahoo.com";
         String username = "yahoo_username";
         String password = "yahoo_password";
@@ -74,8 +76,13 @@ public class CredentialTest {
     @Test
     @Order(2)
     public void getActualPassword(){
-        WebDriverWait wait = new WebDriverWait(driver, 1000);
+
+        driver.get("http://localhost:" + this.port + "/home");
+        credentialPage.clickCredentialTab(driver);
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(driver -> driver.findElement(By.id("edit-credential"))).click();
+
         String password = credentialPage.getEditPassword();
         assertEquals("yahoo_password", password);
         credentialPage.closeButton(driver);
@@ -84,6 +91,8 @@ public class CredentialTest {
     @Test
     @Order(3)
     public void editCredential(){
+
+        driver.get("http://localhost:" + this.port + "/home");
 
         String url = "https://www.udacity.com";
         String username = "udacity_username";
