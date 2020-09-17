@@ -71,7 +71,7 @@ public class NotePage {
     }
 
     public void clickNotesTab(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(notesTab)).click();
         }catch (TimeoutException ex){
@@ -81,7 +81,7 @@ public class NotePage {
     }
 
     public void clickAddNewNote(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(addNoteButton)).click();
         }catch (TimeoutException ex){
@@ -90,7 +90,7 @@ public class NotePage {
     }
 
     public void clickEditNote(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(editNoteButton)).click();
         }catch (TimeoutException ex){
@@ -100,7 +100,7 @@ public class NotePage {
     }
 
     public void clickDeleteNote(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(deleteNoteButton)).click();
         }catch (TimeoutException ex){
@@ -109,7 +109,7 @@ public class NotePage {
     }
 
     public void clickSubmitNote(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(noteSubmitButton)).click();
         }catch (TimeoutException ex){
@@ -118,7 +118,7 @@ public class NotePage {
     }
 
     public void writeAddInputTitle(WebDriver driver,String title){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(noteTitleInput));
         }catch (TimeoutException ex){
@@ -129,7 +129,7 @@ public class NotePage {
     }
 
     public void writeAddDescriptionTitle(WebDriver driver,String title){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(noteDescriptionInput));
         }catch (TimeoutException ex){
@@ -140,7 +140,7 @@ public class NotePage {
     }
 
     public void writeEditInputTitle(WebDriver driver,String title){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(noteTitleInput));
         }catch (TimeoutException ex){
@@ -152,7 +152,7 @@ public class NotePage {
     }
 
     public void writeEditDescriptionTitle(WebDriver driver,String title){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         try{
             wait.until(ExpectedConditions.visibilityOf(noteDescriptionInput));
         }catch (TimeoutException ex){
