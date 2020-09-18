@@ -65,6 +65,7 @@ public class NotePage {
 
     public void deleteNote(WebDriver driver){
         clickNotesTab(driver);
+
         clickDeleteNote(driver);
     }
 
