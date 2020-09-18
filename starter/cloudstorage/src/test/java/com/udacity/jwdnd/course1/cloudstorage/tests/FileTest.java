@@ -82,7 +82,7 @@ public class FileTest {
 
     @Test
     @Order(2)
-    public void deleteFile(){
+    public void deleteFile() throws InterruptedException {
 
         driver.get(baseUrl + "/home");
 
@@ -92,7 +92,7 @@ public class FileTest {
 
         resultPage.clickReturnHomeButton(driver);
 
-        Thread.sleep(1000)
+        Thread.sleep(1000);
 
         Assertions.assertFalse(filePage.getFileName().contains("a.png"));
     }
