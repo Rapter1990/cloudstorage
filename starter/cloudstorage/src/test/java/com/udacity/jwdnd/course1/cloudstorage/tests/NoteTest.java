@@ -119,6 +119,12 @@ public class NoteTest {
 
         notePage.deleteNote(driver);
 
+        resultPage.clickReturnHomeButton(driver);
+
+        Thread.sleep(1000);
+
+        notePage.clickNotesTab(driver);
+
         Thread.sleep(1000);
 
         Assertions.assertNull(notePage.getNoteTitle());
