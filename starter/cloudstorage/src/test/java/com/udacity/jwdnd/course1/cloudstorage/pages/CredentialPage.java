@@ -44,15 +44,6 @@ public class CredentialPage {
     @FindBy(id="credentialsubmit-button")
     private WebElement credentialsubmitbutton;
 
-    @FindBy(id = "credUrl")
-    private List<WebElement> urlList;
-
-    @FindBy(id = "credUsername")
-    private List<WebElement> usernameList;
-
-    @FindBy(id = "credPassword")
-    private List<WebElement> passwordList;
-
     @FindBy(id="logout-button")
     private WebElement logoutbutton;
 
@@ -118,12 +109,12 @@ public class CredentialPage {
 
     public void sendUserNameToInputAdd(WebDriver driver,String url) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(credentialusernamedisplay)).sendKeys(url);
+        wait.until(ExpectedConditions.visibilityOf(credentialusernameInput)).sendKeys(url);
     }
 
     public void sendPasswordToInputAdd(WebDriver driver,String url) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(credentialpassworddisplay)).sendKeys(url);
+        wait.until(ExpectedConditions.visibilityOf(credentialpasswordInput)).sendKeys(url);
     }
 
     public void sendUrlToInputEdit(WebDriver driver,String url) {
@@ -135,16 +126,16 @@ public class CredentialPage {
 
     public void sendUserNameToInputEdit(WebDriver driver,String url) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(credentialusernamedisplay));
-        credentialusernamedisplay.clear();
-        credentialusernamedisplay.sendKeys(url);
+        wait.until(ExpectedConditions.visibilityOf(credentialusernameInput));
+        credentialusernameInput.clear();
+        credentialusernameInput.sendKeys(url);
     }
 
     public void sendPasswordToInputEdit(WebDriver driver,String url) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(credentialpassworddisplay));
-        credentialpassworddisplay.clear();
-        credentialpassworddisplay.sendKeys(url);
+        wait.until(ExpectedConditions.visibilityOf(credentialpasswordInput));
+        credentialpasswordInput.clear();
+        credentialpasswordInput.sendKeys(url);
     }
 
     public void closeButton(WebDriver driver){

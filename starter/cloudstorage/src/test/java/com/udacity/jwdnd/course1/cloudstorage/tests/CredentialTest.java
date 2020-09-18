@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.tests;
 
 import com.udacity.jwdnd.course1.cloudstorage.pages.CredentialPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.ResultPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
@@ -29,6 +30,7 @@ public class CredentialTest {
 
     public CredentialPage credentialPage;
 
+    public ResultPage resultPage;
 
     @BeforeAll
     static void beforeAll() {
@@ -40,6 +42,7 @@ public class CredentialTest {
     public void beforeEach() {
         this.driver = new ChromeDriver();
         credentialPage = new CredentialPage(driver);
+        resultPage = new ResultPage(driver);
 
         driver.get("http://localhost:" + this.port + "/signup");
         SignUpPage signupPage = new SignUpPage(driver);
@@ -63,7 +66,7 @@ public class CredentialTest {
 
     @Test
     @Order(1)
-    public void addCredential(){
+    public void addCredential() throws InterruptedException {
 
         driver.get("http://localhost:" + this.port + "/home");
 
@@ -72,6 +75,16 @@ public class CredentialTest {
         String password = "yahoo_password";
 
         credentialPage.addCredential(driver, url, username, password);
+
+        Thread.sleep(1000);
+
+        resultPage.clickReturnHomeButton(driver);
+
+        Thread.sleep(1000);
+
+        credentialPage.clickCredentialTab(driver);
+
+        Thread.sleep(1000);
 
         assertEquals(url, credentialPage.getCredentialUrl());
         assertEquals(username, credentialPage.getCredentialUsername());
@@ -86,8 +99,7 @@ public class CredentialTest {
         driver.get("http://localhost:" + this.port + "/home");
         credentialPage.clickCredentialTab(driver);
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(driver -> driver.findElement(By.id("edit-credential"))).click();
+        credentialPage.clickEditCredential(driver);
 
         String password = credentialPage.getEditPassword();
         assertEquals("yahoo_password", password);
@@ -96,7 +108,7 @@ public class CredentialTest {
 
     @Test
     @Order(3)
-    public void editCredential(){
+    public void editCredential() throws InterruptedException {
 
         driver.get("http://localhost:" + this.port + "/home");
 
@@ -106,6 +118,16 @@ public class CredentialTest {
 
         credentialPage.editCredential(driver, url, username, password);
 
+        Thread.sleep(1000);
+
+        resultPage.clickReturnHomeButton(driver);
+
+        Thread.sleep(1000);
+
+        credentialPage.clickCredentialTab(driver);
+
+        Thread.sleep(1000);
+
         assertEquals(url, credentialPage.getCredentialUrl());
         assertEquals(username, credentialPage.getCredentialUsername());
         Assertions.assertNotEquals(password, credentialPage.getCredentialPassword());
@@ -113,14 +135,14 @@ public class CredentialTest {
 
     @Test
     @Order(4)
-    public void deleteCredential(){
+    public void deleteCredential() throws InterruptedException {
 
         driver.get("http://localhost:" + this.port + "/home");
 
         credentialPage.deleteCredential(driver);
 
-        Assertions.assertNull(credentialPage.getCredentialUrl());
-        Assertions.assertNull(credentialPage.getCredentialUsername());
-        Assertions.assertNull(credentialPage.getCredentialPassword());
+        Thread.sleep(1000);
+
+        resultPage.clickReturnHomeButton(driver);
     }
 }
