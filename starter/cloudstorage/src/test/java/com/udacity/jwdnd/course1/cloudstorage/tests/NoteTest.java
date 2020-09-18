@@ -88,7 +88,7 @@ public class NoteTest {
 
     @Test
     @Order(2)
-    public void editNote(){
+    public void editNote() throws InterruptedException {
 
         driver.get("http://localhost:" + this.port + "/home");
 
@@ -97,9 +97,15 @@ public class NoteTest {
 
         notePage.editNote(driver, noteTitle,noteDescription);
 
+        Thread.sleep(1000);
+
         resultPage.clickReturnHomeButton(driver);
 
+        Thread.sleep(1000);
+
         notePage.clickNotesTab(driver);
+
+        Thread.sleep(1000);
 
         assertEquals(noteTitle, notePage.getNoteTitle());
         assertEquals(noteDescription, notePage.getNoteDescription());
@@ -107,11 +113,13 @@ public class NoteTest {
 
     @Test
     @Order(3)
-    public void deleteNote(){
+    public void deleteNote() throws InterruptedException {
 
         driver.get("http://localhost:" + this.port + "/home");
 
         notePage.deleteNote(driver);
+
+        Thread.sleep(1000);
 
         Assertions.assertNull(notePage.getNoteTitle());
         Assertions.assertNull(notePage.getNoteDescription());
