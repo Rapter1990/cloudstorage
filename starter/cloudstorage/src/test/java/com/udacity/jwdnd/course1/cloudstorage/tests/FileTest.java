@@ -51,6 +51,7 @@ public class FileTest {
         String password = "P4ssword";
         signupPage.signupUser(firstname,lastname,username,password);
 
+
         driver.get("http://localhost:" + this.port + "/login");
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginUser(username, password);
