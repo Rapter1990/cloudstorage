@@ -62,7 +62,7 @@ public class NoteTest {
 
     @Test
     @Order(1)
-    public void addNote(){
+    public void addNote() throws InterruptedException {
 
         driver.get("http://localhost:" + this.port + "/home");
 
@@ -70,6 +70,8 @@ public class NoteTest {
         String noteDescription = "Note Description";
 
         notePage.addNote(driver, noteTitle,noteDescription);
+
+        Thread.sleep(1000);
 
         resultPage.clickReturnHomeButton(driver);
 
