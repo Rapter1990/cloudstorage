@@ -93,6 +93,10 @@ public class NoteTest {
 
         notePage.editNote(driver, noteTitle,noteDescription);
 
+        resultPage.clickReturnHomeButton(driver);
+
+        notePage.clickNotesTab(driver);
+
         assertEquals(noteTitle, notePage.getNoteTitle());
         assertEquals(noteDescription, notePage.getNoteDescription());
     }
