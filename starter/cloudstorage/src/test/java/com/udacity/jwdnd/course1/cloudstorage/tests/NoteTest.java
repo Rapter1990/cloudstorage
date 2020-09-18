@@ -75,7 +75,11 @@ public class NoteTest {
 
         resultPage.clickReturnHomeButton(driver);
 
+        Thread.sleep(1000);
+
         notePage.clickNotesTab(driver);
+
+        Thread.sleep(1000);
 
         assertEquals(noteTitle, notePage.getNoteTitle());
         assertEquals(noteDescription, notePage.getNoteDescription());
