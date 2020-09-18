@@ -119,6 +119,8 @@ public class NoteTest {
 
         notePage.deleteNote(driver);
 
+        Thread.sleep(1000);
+
         resultPage.clickReturnHomeButton(driver);
 
         Thread.sleep(1000);
