@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -162,8 +163,21 @@ public class NotePage {
         noteDescriptionInput.sendKeys(title);
     }
 
-    public String getNoteTitle() { return noteTitleDisplay.getText(); }
+    public String getNoteTitle() {
+        try{
+            return noteTitleDisplay.getText();
+        } catch (NoSuchElementException e){
+            return null;
+        }
 
-    public String getNoteDescription() { return noteDescriptionDisplay.getText(); }
+    }
+
+    public String getNoteDescription() {
+        try{
+            return noteDescriptionDisplay.getText();
+        } catch (NoSuchElementException e){
+            return null;
+        }
+    }
 
 }
