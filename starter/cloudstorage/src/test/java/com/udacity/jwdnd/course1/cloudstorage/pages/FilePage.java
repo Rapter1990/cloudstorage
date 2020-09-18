@@ -21,7 +21,7 @@ public class FilePage {
     @FindBy(id = "delete-file-button")
     private WebElement deleteFileButton;
 
-    @FindBy(xpath = "//*[@id=\"fileTable\"]/tbody/tr")
+    @FindBy(id = "file-name")
     private WebElement firstFile;
 
     public FilePage(WebDriver driver) {
@@ -40,8 +40,10 @@ public class FilePage {
         wait.until(ExpectedConditions.visibilityOf(deleteFileButton)).click();
     }
 
-    public String getFileName() {
-        return firstFile.findElement(By.id("file-name")).getText();
+    public String getFileName(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(firstFile));
+        return firstFile.getText();
     }
 
 }

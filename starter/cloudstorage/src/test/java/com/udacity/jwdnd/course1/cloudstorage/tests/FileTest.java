@@ -6,6 +6,8 @@ import com.udacity.jwdnd.course1.cloudstorage.pages.ResultPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -67,7 +69,7 @@ public class FileTest {
 
         driver.get(baseUrl + "/home");
 
-        String filePath = "C:/Users/Noyan/Desktop/a.png";
+        String filePath = "C:\\Users\\Noyan\\Desktop\\b.png";
 
         filePage.uploadFile(driver,filePath);
 
@@ -77,7 +79,7 @@ public class FileTest {
 
         Thread.sleep(1000);
 
-        Assertions.assertTrue(filePage.getFileName().contains("a.png"));
+        Assertions.assertTrue(filePage.getFileName(driver).contains("b.png"));
     }
 
     @Test
@@ -94,6 +96,8 @@ public class FileTest {
 
         Thread.sleep(1000);
 
-        Assertions.assertFalse(filePage.getFileName().contains("a.png"));
+        Assertions.assertThrows(NoSuchElementException.class, () -> {
+            this.driver.findElement(By.id("file-name"));
+        });
     }
 }
