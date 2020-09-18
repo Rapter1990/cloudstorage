@@ -123,13 +123,5 @@ public class NoteTest {
 
         resultPage.clickReturnHomeButton(driver);
 
-        Thread.sleep(1000);
-
-        notePage.clickNotesTab(driver);
-
-        Thread.sleep(1000);
-
-        Assertions.assertNull(notePage.getNoteTitle());
-        Assertions.assertNull(notePage.getNoteDescription());
     }
 }
