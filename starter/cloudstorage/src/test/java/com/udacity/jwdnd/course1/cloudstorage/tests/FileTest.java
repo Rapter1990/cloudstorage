@@ -69,7 +69,7 @@ public class FileTest {
 
         driver.get(baseUrl + "/home");
 
-        String filePath = "C:\\Users\\Noyan\\Desktop\\b.png";
+        String filePath = "C:\\Users\\Noyan\\Desktop\\c.png";
 
         filePage.uploadFile(driver,filePath);
 
@@ -79,7 +79,7 @@ public class FileTest {
 
         Thread.sleep(1000);
 
-        Assertions.assertTrue(filePage.getFileName(driver).contains("b.png"));
+        Assertions.assertTrue(filePage.getFileName(driver).contains("c.png"));
     }
 
     @Test
