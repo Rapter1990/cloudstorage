@@ -70,7 +70,6 @@ public class CredentialPage {
         sendUserNameToInputAdd(driver,username);
         sendPasswordToInputAdd(driver,password);
         clickSubmitCredential(driver);
-        clickCredentialTab(driver);
     }
 
     public void editCredential(WebDriver driver, String url, String username, String password){
