@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.tests;
 
 import com.udacity.jwdnd.course1.cloudstorage.pages.FilePage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
+import com.udacity.jwdnd.course1.cloudstorage.pages.ResultPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
@@ -25,6 +26,8 @@ public class FileTest {
 
     public FilePage filePage;
 
+    public ResultPage resultPage;
+
     @BeforeAll
     static void beforeAll() {
         Locale.setDefault(new Locale("en","US"));
@@ -36,6 +39,7 @@ public class FileTest {
         this.driver = new ChromeDriver();
         baseUrl = "http://localhost:" + this.port;
         filePage = new FilePage(driver);
+        resultPage = new ResultPage(driver);
 
         driver.get("http://localhost:" + this.port + "/signup");
         SignUpPage signupPage = new SignUpPage(driver);
@@ -59,13 +63,19 @@ public class FileTest {
 
     @Test
     @Order(1)
-    public void uploadFile(){
+    public void uploadFile() throws InterruptedException {
 
         driver.get(baseUrl + "/home");
 
         String filePath = "C:/Users/Noyan/Desktop/a.png";
 
         filePage.uploadFile(driver,filePath);
+
+        Thread.sleep(1000);
+
+        resultPage.clickReturnHomeButton(driver);
+
+        Thread.sleep(1000);
 
         Assertions.assertTrue(filePage.getFileName().contains("a.png"));
     }
@@ -77,6 +87,12 @@ public class FileTest {
         driver.get(baseUrl + "/home");
 
         filePage.deleteFile(driver);
+
+        Thread.sleep(1000);
+
+        resultPage.clickReturnHomeButton(driver);
+
+        Thread.sleep(1000)
 
         Assertions.assertFalse(filePage.getFileName().contains("a.png"));
     }
